@@ -1,6 +1,6 @@
-import type { WatchConnection } from "../schemas/index.js";
-import { LIVE_PROVIDERS, NATIVE_SCOPES, type PROVIDERS } from "../constants.js";
-import { providerCopy } from "../copy.js";
+import type { WatchConnection } from "../schemas/index";
+import { LIVE_PROVIDERS, NATIVE_SCOPES, type PROVIDERS } from "../constants";
+import { providerCopy } from "../copy";
 
 export type WatchProvider = (typeof PROVIDERS)[number];
 

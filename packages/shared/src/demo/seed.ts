@@ -1,7 +1,7 @@
-import { ALGORITHM_VERSION } from "../constants.js";
-import type { ReviewContract } from "../schemas/index.js";
-import { comparatorKey, scoreFindings, type FeatureVector } from "../analysis/baseline.js";
-import { DEMO_PHASES, synthDeliveryFrames } from "./poseSynth.js";
+import { ALGORITHM_VERSION } from "../constants";
+import type { ReviewContract } from "../schemas/index";
+import { comparatorKey, scoreFindings, type FeatureVector } from "../analysis/baseline";
+import { DEMO_PHASES, synthDeliveryFrames } from "./poseSynth";
 
 export const DEMO_ATHLETE_ID = "demo-athlete-asha";
 export const DEMO_CHANGED_SESSION_ID = "sess-changed-2026-10-02";

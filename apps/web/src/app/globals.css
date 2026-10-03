@@ -16,7 +16,11 @@ body {
 }
 
 body {
-  font-family: "Source Sans 3", "Source Sans Pro", "Helvetica Neue", system-ui, sans-serif;
+  font-family: var(--font-sans), "Source Sans 3", "Helvetica Neue", system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), "Fraunces", "Palatino Linotype", serif;
 }
 
 *:focus-visible {

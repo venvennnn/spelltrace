@@ -6,18 +6,18 @@ import {
   VIDEO_MAX_BYTES,
   VIDEO_MAX_DURATION_MS,
   VIDEO_MIME,
-} from "./constants.js";
+} from "./constants";
 import {
   demoAthlete,
   demoSessions,
   demoWatchConnections,
   reviewForSession,
   type DemoSession,
-} from "./demo/seed.js";
-import { previewDailyWatch, previewMotion } from "./analysis/csv.js";
-import { deterministicNarration, evidenceHash, validateGeminiOutput } from "./analysis/gemini.js";
-import type { EvidenceBundle, GeminiOutput, SessionCreate, ShareCreate } from "./schemas/index.js";
-import { sessionCreateSchema, shareCreateSchema } from "./schemas/index.js";
+} from "./demo/seed";
+import { previewDailyWatch, previewMotion } from "./analysis/csv";
+import { deterministicNarration, evidenceHash, validateGeminiOutput } from "./analysis/gemini";
+import type { EvidenceBundle, GeminiOutput, SessionCreate, ShareCreate } from "./schemas/index";
+import { sessionCreateSchema, shareCreateSchema } from "./schemas/index";
 
 export type ShareSet = {
   id: string;

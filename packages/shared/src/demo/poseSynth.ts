@@ -1,4 +1,4 @@
-import { POSE_LANDMARKS, type LandmarkName, type PoseFrame } from "../analysis/pose.js";
+import { POSE_LANDMARKS, type LandmarkName, type PoseFrame } from "../analysis/pose";
 
 /** Synthetic 2D bowling-like silhouette. Not a real athlete recording. */
 export function synthDeliveryFrames(opts: {

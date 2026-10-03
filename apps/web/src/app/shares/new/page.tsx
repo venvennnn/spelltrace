@@ -4,7 +4,14 @@ import { useEffect, useState } from "react";
 import { AppShell } from "@/components/AppShell";
 import { api } from "@/lib/api";
 
-type Session = { id: string; video: { id: string; deleted: boolean } | null; deliveries: { id: string }[] };
+type Session = {
+  id: string;
+  startedAtUtc: string;
+  view: string;
+  drill: string;
+  video: { id: string; deleted: boolean } | null;
+  deliveries: { id: string }[];
+};
 
 export default function NewSharePage() {
   const [sessions, setSessions] = useState<Session[]>([]);
@@ -27,12 +34,15 @@ export default function NewSharePage() {
         Defaults leave check-in details, cycle/symptom notes, daily health metrics, and full raw video unselected.
       </p>
       <ul className="mt-4 space-y-2">
-        {sessions.map((s) => (
+        {sessions
+          .filter((s) => s.deliveries.length > 0)
+          .map((s) => (
           <li key={s.id}>
             <label className="flex min-h-tap items-center gap-2 rounded-xl border border-line bg-paper px-3">
               <input type="checkbox" checked={selected.includes(s.id)} onChange={() => toggle(s.id)} />
               <span>
-                {s.id} {s.video?.deleted ? "(movement only)" : ""}
+                {new Date(s.startedAtUtc).toLocaleDateString("en-AU")} · {s.view} {s.drill}
+                {s.video?.deleted ? " · movement only" : ""}
               </span>
             </label>
           </li>
@@ -57,7 +67,11 @@ export default function NewSharePage() {
           });
           const res = await api<{ id: string; token: string }>("/api/shares", {
             method: "POST",
-            body: JSON.stringify({ title: `Share ${selected.length} items`, expiresInHours: 48, items }),
+            body: JSON.stringify({
+              title: `Share ${selected.length} ${selected.length === 1 ? "item" : "items"}`,
+              expiresInHours: 48,
+              items,
+            }),
           });
           setShareId(res.id);
           setLink(`${window.location.origin}/s/${res.token}`);

@@ -1,5 +1,5 @@
-import { ALLOWED_DAILY_METRICS, MOTION_MIN_HZ } from "../constants.js";
-import { dailyWatchRowSchema, motionSampleRowSchema } from "../schemas/index.js";
+import { ALLOWED_DAILY_METRICS, MOTION_MIN_HZ } from "../constants";
+import { dailyWatchRowSchema, motionSampleRowSchema } from "../schemas/index";
 
 const ALLOWED_UNITS: Record<string, string[]> = {
   sleep_duration_min: ["min", "minutes"],

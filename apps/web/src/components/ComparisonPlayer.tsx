@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { featureCopy, limits, type PoseFrame } from "@spelltrace/shared";
 import { PoseOverlay, type OverlayMode } from "./PoseOverlay";
 
@@ -40,51 +40,6 @@ export function ComparisonPlayer({ usual, changed, feature, currentValue, onHowM
   }, []);
 
   const highlight = (featureCopy[feature ?? ""]?.joints ?? []) as Parameters<typeof PoseOverlay>[0]["highlight"];
-  const timeFor = (clip: Clip) => phase * clip.durationMs;
-  const layoutFor = (clip: Clip, w: number, h: number) => ({
-    videoWidth: clip.width,
-    videoHeight: clip.height,
-    rotation: 0 as const,
-    displayWidth: w,
-    displayHeight: h,
-    objectFit: "contain" as const,
-  });
-
-  const Player = ({ clip, w, h }: { clip: Clip; w: number; h: number }) => (
-    <div className="overflow-hidden rounded-2xl border border-line bg-ink">
-      <div className="relative aspect-video w-full bg-[#111]">
-        {clip.videoDeleted ? (
-          <div className="absolute inset-0 flex items-center justify-center bg-[#1c1916] text-center text-sm text-[#E4DCD0]">
-            <p>
-              Source footage deleted
-              <br />
-              <span className="text-xs text-[#8A8378]">{limits.videoDeleted}</span>
-            </p>
-          </div>
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-b from-[#2a2420] to-[#111]" aria-hidden />
-        )}
-        <PoseOverlay
-          frames={clip.frames}
-          timeMs={timeFor(clip)}
-          layout={layoutFor(clip, w, h)}
-          mode={mode}
-          opacity={opacity}
-          highlight={highlight}
-          angleLabel={
-            feature && currentValue != null
-              ? { text: `${featureCopy[feature]?.label ?? feature} ${currentValue}${featureCopy[feature]?.unit ?? ""}`, at: "left_shoulder" }
-              : undefined
-          }
-        />
-      </div>
-      <div className="flex items-center justify-between bg-paper px-3 py-2 text-xs text-muted">
-        <span className="font-semibold text-ink">{clip.title}</span>
-        <span>{clip.date}</span>
-      </div>
-    </div>
-  );
-
   const active = which === "usual" ? usual : changed;
 
   return (
@@ -143,11 +98,11 @@ export function ComparisonPlayer({ usual, changed, feature, currentValue, onHowM
 
       {dual ? (
         <div className="grid grid-cols-2 gap-4">
-          <Player clip={usual} w={520} h={292} />
-          <Player clip={changed} w={520} h={292} />
+          <ClipPlayer clip={usual} phase={phase} mode={mode} opacity={opacity} highlight={highlight} feature={feature} currentValue={currentValue} />
+          <ClipPlayer clip={changed} phase={phase} mode={mode} opacity={opacity} highlight={highlight} feature={feature} currentValue={currentValue} />
         </div>
       ) : (
-        <Player clip={active} w={360} h={202} />
+        <ClipPlayer clip={active} phase={phase} mode={mode} opacity={opacity} highlight={highlight} feature={feature} currentValue={currentValue} />
       )}
 
       <label className="block">
@@ -171,5 +126,90 @@ export function ComparisonPlayer({ usual, changed, feature, currentValue, onHowM
       </label>
       <p className="text-xs text-muted">{active.match}. Overlay is drawn from stored landmarks, not burned into footage.</p>
     </section>
+  );
+}
+
+function ClipPlayer({
+  clip,
+  phase,
+  mode,
+  opacity,
+  highlight,
+  feature,
+  currentValue,
+}: {
+  clip: Clip;
+  phase: number;
+  mode: OverlayMode;
+  opacity: number;
+  highlight: Parameters<typeof PoseOverlay>[0]["highlight"];
+  feature?: string;
+  currentValue?: number;
+}) {
+  const box = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ w: 320, h: 180 });
+
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const measure = () => {
+      const r = el.getBoundingClientRect();
+      setSize({ w: Math.max(1, Math.round(r.width)), h: Math.max(1, Math.round(r.height)) });
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    window.addEventListener("orientationchange", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+      window.removeEventListener("orientationchange", measure);
+    };
+  }, []);
+
+  return (
+    <div className="overflow-hidden rounded-2xl border border-line bg-ink">
+      <div ref={box} className="relative aspect-video w-full bg-[#111]">
+        {clip.videoDeleted ? (
+          <div className="absolute inset-0 flex items-center justify-center bg-[#1c1916] text-center text-sm text-[#E4DCD0]">
+            <p>
+              Source footage deleted
+              <br />
+              <span className="text-xs text-[#8A8378]">{limits.videoDeleted}</span>
+            </p>
+          </div>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-b from-[#2a2420] to-[#111]" aria-hidden />
+        )}
+        <PoseOverlay
+          frames={clip.frames}
+          timeMs={phase * clip.durationMs}
+          layout={{
+            videoWidth: clip.width,
+            videoHeight: clip.height,
+            rotation: 0,
+            displayWidth: size.w,
+            displayHeight: size.h,
+            objectFit: "contain",
+          }}
+          mode={mode}
+          opacity={opacity}
+          highlight={highlight}
+          angleLabel={
+            feature && currentValue != null
+              ? {
+                  text: `${featureCopy[feature]?.label ?? feature} ${currentValue}${featureCopy[feature]?.unit ?? ""}`,
+                  at: "left_shoulder",
+                }
+              : undefined
+          }
+        />
+      </div>
+      <div className="flex items-center justify-between bg-paper px-3 py-2 text-xs text-muted">
+        <span className="font-semibold text-ink">{clip.title}</span>
+        <span>{clip.date}</span>
+      </div>
+    </div>
   );
 }

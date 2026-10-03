@@ -25,6 +25,8 @@ The public website is **Spelltrace**. Demo mode ships with a clearly labelled sy
 npm install
 npm test                          # shared acceptance + web contract tests
 npm run dev                       # Spelltrace website at http://localhost:3000
+# in another terminal, after the site is up:
+npm run test:e2e --workspace=@spelltrace/web
 ```
 
 Optional worker:

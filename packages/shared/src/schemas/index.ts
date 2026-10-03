@@ -5,7 +5,7 @@ import {
   CONNECTION_STATES,
   JOB_STATES,
   PROVIDERS,
-} from "../constants.js";
+} from "../constants";
 
 export const bowlingArmSchema = z.enum(["right", "left"]);
 export const cameraViewSchema = z.enum(["side", "front"]);

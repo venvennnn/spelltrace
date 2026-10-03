@@ -1,7 +1,7 @@
-import { BASELINE_MIN_DELIVERIES, BASELINE_MIN_SESSIONS, MAX_FINDINGS } from "../constants.js";
-import type { ReviewFinding } from "../schemas/index.js";
-import { featureCopy } from "../copy.js";
-import { empiricalInterval, median, percentileRank } from "./stats.js";
+import { BASELINE_MIN_DELIVERIES, BASELINE_MIN_SESSIONS, MAX_FINDINGS } from "../constants";
+import type { ReviewFinding } from "../schemas/index";
+import { featureCopy } from "../copy";
+import { empiricalInterval, median, percentileRank } from "./stats";
 
 export type FeatureVector = {
   deliveryId: string;

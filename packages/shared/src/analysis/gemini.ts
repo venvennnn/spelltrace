@@ -1,4 +1,4 @@
-import { evidenceBundleSchema, geminiOutputSchema, type EvidenceBundle, type GeminiOutput } from "../schemas/index.js";
+import { evidenceBundleSchema, geminiOutputSchema, type EvidenceBundle, type GeminiOutput } from "../schemas/index";
 
 const MEDICAL =
   /\b(injur(y|ies|ed)|diagnos|fracture|tear|strain|sprain|risk\s*\d+\s*%|medical|prescribe|spell\s*cap|cycle\s*phase|ovulat|pregnant|concuss)/i;

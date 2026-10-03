@@ -17,8 +17,8 @@ import {
   previewMotion,
   reviewForSession,
   validateGeminiOutput,
-} from "../src/index.js";
-import { createStore as makeStore } from "../src/store.js";
+} from "../src/index";
+import { createStore as makeStore } from "../src/store";
 
 describe("acceptance (b) pose findings without fabricating watch motion", () => {
   it("returns pose findings and marks watch motion absent", () => {

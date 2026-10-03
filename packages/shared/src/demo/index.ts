@@ -1,2 +1,2 @@
-export * from "./poseSynth.js";
-export * from "./seed.js";
+export * from "./poseSynth";
+export * from "./seed";
