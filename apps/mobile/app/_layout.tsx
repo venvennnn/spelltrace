@@ -6,16 +6,18 @@ export default function Layout() {
     <Tabs
       screenOptions={{
         headerTitle: product.name,
-        tabBarActiveTintColor: "#1F6B66",
-        tabBarStyle: { minHeight: 56 },
+        tabBarActiveTintColor: "#A63A2E",
+        tabBarInactiveTintColor: "#66665F",
+        tabBarStyle: { minHeight: 56, borderTopColor: "#D9D6CC", backgroundColor: "#fff" },
         headerStyle: { backgroundColor: "#fff" },
-        headerTitleStyle: { fontFamily: "Georgia" },
+        headerTitleStyle: { fontFamily: "Georgia", fontWeight: "600" },
+        headerShadowVisible: false,
       }}
     >
       <Tabs.Screen name="index" options={{ title: nav.today }} />
-      <Tabs.Screen name="sessions" options={{ title: nav.sessions }} />
-      <Tabs.Screen name="add" options={{ title: nav.add }} />
       <Tabs.Screen name="review" options={{ title: nav.review }} />
+      <Tabs.Screen name="add" options={{ title: nav.add }} />
+      <Tabs.Screen name="sessions" options={{ title: nav.sessions }} />
       <Tabs.Screen name="profile" options={{ title: nav.profile }} />
     </Tabs>
   );

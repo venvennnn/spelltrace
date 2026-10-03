@@ -110,7 +110,7 @@ export function BowlingClip({
     }
     if (angleLabel) {
       ox.globalAlpha = 1;
-      ox.font = "700 13px Source Sans 3, sans-serif";
+      ox.font = "600 13px IBM Plex Sans, system-ui, sans-serif";
       ox.fillStyle = "#fff";
       ox.strokeStyle = "#1A1714";
       ox.lineWidth = 3;

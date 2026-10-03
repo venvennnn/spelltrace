@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { IBM_Plex_Sans, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
 
-const display = Fraunces({ subsets: ["latin"], variable: "--font-display" });
-const sans = Source_Sans_3({ subsets: ["latin"], variable: "--font-sans" });
+const display = Source_Serif_4({ subsets: ["latin"], variable: "--font-display" });
+const sans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Spelltrace — personal bowling review",
-  description:
-    "Spot a change in your bowling, understand why, decide what to share. Athlete-owned, evidence-backed, never a diagnosis.",
+  title: "Spelltrace",
+  description: "See what changed in your bowling vs your usual.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

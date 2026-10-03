@@ -36,8 +36,8 @@ await shot(page, "mobile_today");
 await overflow(page, "today-390");
 const today = await page.locator("body").innerText();
 if (!/Demo/i.test(today)) notes.push("FAIL missing demo banner on today");
-if (!/Movement/i.test(today) || !/Sleep/i.test(today) || !/Cycle/i.test(today) || !/Environment/i.test(today)) {
-  notes.push("FAIL missing delta sections");
+if (!/Sleep/i.test(today) || !/Cycle/i.test(today) || !/Heat/i.test(today) || !/Trunk/i.test(today)) {
+  notes.push("FAIL missing today drivers");
 }
 if (/\b(you have an injury|injury risk|diagnosed)\b/i.test(today)) notes.push("FAIL injury language on today");
 
@@ -51,7 +51,7 @@ const details = page.locator("summary");
 if (await details.count()) await details.first().click();
 await shot(page, "mobile_review_overlay");
 const reviewText = await page.locator("body").innerText();
-if (!/Movement/i.test(reviewText) || !/Sleep/i.test(reviewText)) notes.push("FAIL missing review deltas");
+if (!/Sleep/i.test(reviewText) || !/Trunk/i.test(reviewText)) notes.push("FAIL missing review drivers");
 
 await page.goto("http://localhost:3000/sessions/sess-2026-09-12", { waitUntil: "networkidle" });
 const moved = await page.locator("body").innerText();

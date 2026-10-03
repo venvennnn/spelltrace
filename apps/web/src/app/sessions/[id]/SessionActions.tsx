@@ -19,10 +19,10 @@ export function SessionActions({
   }
   return (
     <div className="mt-6 flex flex-col gap-2 sm:flex-row">
-      <button disabled={!videoId || videoDeleted} onClick={() => del(true)} className="min-h-tap rounded-full border px-4 text-sm">
+      <button disabled={!videoId || videoDeleted} onClick={() => del(true)} className="min-h-tap border border-line px-4 text-sm">
         Keep movement only
       </button>
-      <button disabled={!videoId && !videoDeleted} onClick={() => del(false)} className="min-h-tap rounded-full border border-red-800 px-4 text-sm text-red-800">
+      <button disabled={!videoId && !videoDeleted} onClick={() => del(false)} className="min-h-tap border border-brick px-4 text-sm text-brick">
         Delete both
       </button>
     </div>

@@ -21,9 +21,9 @@ export const limits = {
 export const nav = {
   today: "Today",
   sessions: "Sessions",
-  add: "Add",
+  add: "Log",
   review: "Review",
-  profile: "Profile",
+  profile: "Watch",
 } as const;
 
 export const watchLabels = {

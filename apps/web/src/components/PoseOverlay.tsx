@@ -86,7 +86,7 @@ export function PoseOverlay({ frames, timeMs, layout, mode, opacity, highlight, 
       const p = mapped[angleLabel.at];
       if (p?.visible) {
         ctx.globalAlpha = 1;
-        ctx.font = "600 13px Source Sans 3, sans-serif";
+        ctx.font = "600 13px IBM Plex Sans, system-ui, sans-serif";
         ctx.fillStyle = "#1A1714";
         ctx.fillText(angleLabel.text, p.x + 8, p.y - 8);
       }

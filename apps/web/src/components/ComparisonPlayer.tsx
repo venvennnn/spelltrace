@@ -77,12 +77,12 @@ export function ComparisonPlayer({ usual, changed, feature, currentValue, onHowM
   return (
     <section className="space-y-3">
       <div className="flex flex-wrap items-center gap-2">
-        <div className="inline-flex rounded-full bg-teal-soft p-1" role="tablist">
+        <div className="grid grid-cols-2 border border-ink" role="tablist">
           {(["changed", "usual"] as const).map((k) => (
             <button
               key={k}
               type="button"
-              className={`min-h-tap rounded-full px-3 text-sm ${which === k ? "bg-teal text-white" : "text-teal"}`}
+              className={`h-11 min-w-[88px] text-[13px] ${which === k ? "bg-ink font-semibold text-white" : "bg-white text-ink"}`}
               onClick={() => setWhich(k)}
             >
               {k === "changed" ? "Today" : "Usual"}
@@ -90,7 +90,7 @@ export function ComparisonPlayer({ usual, changed, feature, currentValue, onHowM
           ))}
         </div>
         <select
-          className="min-h-tap rounded-lg border border-line bg-white px-2 text-sm"
+          className="h-11 border border-line bg-white px-2 text-[13px]"
           value={mode}
           onChange={(e) => setMode(e.target.value as OverlayMode)}
           aria-label="Overlay"
@@ -99,11 +99,11 @@ export function ComparisonPlayer({ usual, changed, feature, currentValue, onHowM
           <option value="skeleton">Skeleton</option>
           <option value="finding">Finding</option>
         </select>
-        <button type="button" className="min-h-tap rounded-lg border border-line px-3 text-sm" onClick={() => setPlaying((p) => !p)}>
+        <button type="button" className="h-11 border border-line px-3 text-[13px]" onClick={() => setPlaying((p) => !p)}>
           {playing ? "Pause" : "Play"}
         </button>
         {onHowMeasured && (
-          <button type="button" className="min-h-tap text-sm text-teal underline" onClick={onHowMeasured}>
+          <button type="button" className="min-h-tap text-[13px] font-medium text-brick" onClick={onHowMeasured}>
             How measured
           </button>
         )}
@@ -147,7 +147,7 @@ function PlayerFrame({
   clip: Clip;
 } & Parameters<typeof BowlingClip>[0]) {
   return (
-    <div className="overflow-hidden rounded-2xl border border-line bg-white">
+    <div className="overflow-hidden border border-line bg-white">
       <BowlingClip {...rest} />
       <div className="flex items-center justify-between px-3 py-2 text-xs text-muted">
         <span className="font-semibold text-ink">{clip.title}</span>
