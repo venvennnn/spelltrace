@@ -176,7 +176,7 @@ export default function NewSessionPage() {
         </details>
 
         {error && <p className="text-sm text-red-800">{error}</p>}
-        <button disabled={busy} className="min-h-12 w-full bg-ink text-[15px] font-semibold text-white" type="submit">
+        <button disabled={busy} className="sticky bottom-20 z-20 min-h-12 w-full bg-ink text-[15px] font-semibold text-white md:static md:bottom-auto" type="submit">
           {busy ? "Saving…" : saved ? "Saved" : "Create session"}
         </button>
       </form>

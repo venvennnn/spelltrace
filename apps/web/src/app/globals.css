@@ -15,6 +15,7 @@ body {
   background: var(--surface);
   color: var(--ink);
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {

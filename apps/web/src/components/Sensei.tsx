@@ -62,8 +62,8 @@ export function MetricStrip({ cells }: { cells: StripCell[] }) {
   );
 }
 
-function px(v: number) {
-  return Math.round(((v + 8) / 20) * 132);
+function pct(v: number) {
+  return `${Math.min(100, Math.max(0, ((v + 8) / 20) * 100))}%`;
 }
 
 export function PatternList({ rows }: { rows: PatternRow[] }) {
@@ -71,7 +71,7 @@ export function PatternList({ rows }: { rows: PatternRow[] }) {
   const active = rows[sel];
   return (
     <section>
-      <div className="grid grid-cols-[1fr_132px] gap-2.5 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-brick">
+      <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,38%)] gap-2 pb-1.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-brick">
         <div>Context vs lean</div>
         <div className="flex justify-between font-medium normal-case tracking-normal text-muted">
           <span>lower</span>
@@ -85,26 +85,26 @@ export function PatternList({ rows }: { rows: PatternRow[] }) {
           type="button"
           aria-pressed={sel === i}
           onClick={() => setSel(i)}
-          className={`grid min-h-[46px] w-full grid-cols-[1fr_132px] items-center gap-2.5 border-t border-line py-1.5 text-left ${
+          className={`grid min-h-[46px] w-full grid-cols-[minmax(0,1fr)_minmax(0,38%)] items-center gap-2 border-t border-line py-1.5 text-left ${
             sel === i ? "bg-[#F4F1EC]" : "bg-transparent"
           }`}
         >
-          <span>
+          <span className="min-w-0">
             <span className="block text-[13px] font-medium leading-snug">{r.name}</span>
             <span className="text-[11px] font-semibold tracking-[0.06em]" style={{ color: r.tagColor }}>
               {r.tag}
             </span>
           </span>
-          <span className="relative block h-5">
-            <span className="absolute left-[56px] top-0 h-5 w-px bg-[#B9B6AD]" />
+          <span className="relative block h-5 min-w-0 overflow-hidden">
+            <span className="absolute left-1/2 top-0 h-5 w-px -translate-x-px bg-[#B9B6AD]" />
             <span
               className="absolute top-[9px] h-0.5"
-              style={{ left: px(r.lo), width: Math.max(2, px(r.hi) - px(r.lo)), background: r.tagColor }}
+              style={{ left: pct(r.lo), width: `max(2px, calc(${pct(r.hi)} - ${pct(r.lo)}))`, background: r.tagColor }}
             />
             <span
-              className="absolute top-1 h-3 w-3 -ml-1.5 rounded-full border-[1.5px] box-border"
+              className="absolute top-1 h-3 w-3 -translate-x-1/2 rounded-full border-[1.5px] box-border"
               style={{
-                left: px(r.est),
+                left: pct(r.est),
                 background: r.tag === "FORMING" || r.tag === "NO CLEAR EFFECT" ? "#fff" : r.tagColor,
                 borderColor: r.tagColor,
               }}

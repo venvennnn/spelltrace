@@ -41,7 +41,7 @@ function Tabs({ path, className }: { path: string; className?: string }) {
 export function AppShell({ children, wide = false }: { children: React.ReactNode; wide?: boolean }) {
   const path = usePathname();
   return (
-    <div className={`mx-auto min-h-dvh bg-paper pb-[72px] md:pb-0 ${wide ? "max-w-page" : "max-w-phone"}`}>
+    <div className={`mx-auto min-h-dvh overflow-x-hidden bg-paper pb-[72px] md:pb-0 ${wide ? "max-w-page" : "max-w-phone"}`}>
       <header className="flex items-center justify-between px-6 pt-5">
         <Link href="/today" className="font-display text-[18px] font-semibold">
           Spelltrace

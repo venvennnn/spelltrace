@@ -55,7 +55,7 @@ export function todayDrivers(
     const d = Math.round((top.current - top.personalMedian) * 10) / 10;
     items.push({
       n: items.length + 1,
-      title: `${meta.label} ${d > 0 ? "+" : ""}${d}${meta.unit}`,
+      title: `${SHORT[top.feature] ?? meta.label} ${d > 0 ? "+" : ""}${d}${meta.unit}`,
       body: `${top.current}${meta.unit} today vs ${top.personalMedian}${meta.unit} usual.`,
       href: reviewHref,
       strong: true,
@@ -96,7 +96,7 @@ export function metricStrip(session: DemoSession, sessions: DemoSession[]): Stri
   return [
     { label: "Sleep", value: sleep.today, note: sleep.tone === "missing" ? "missing" : sleep.tone === "down" ? "below usual" : "in range", alert: sleep.tone === "down" },
     { label: "HRV", value: hrv.today.replace(" ms", ""), note: hrv.tone === "down" ? "below usual" : "in range", alert: hrv.tone === "down" },
-    { label: "Resting HR", value: rhr.today.replace(" bpm", ""), note: rhr.tone === "up" ? "above usual" : "in range", alert: rhr.tone === "up" },
+    { label: "RHR", value: rhr.today.replace(" bpm", ""), note: rhr.tone === "up" ? "above usual" : "in range", alert: rhr.tone === "up" },
     { label: "Heat", value: heat.today, note: heat.delta === "Changed" ? "changed" : "same", alert: heat.delta === "Changed" },
   ];
 }

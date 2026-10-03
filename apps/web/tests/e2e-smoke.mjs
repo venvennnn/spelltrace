@@ -44,7 +44,7 @@ if (/\b(you have an injury|injury risk|diagnosed)\b/i.test(today)) notes.push("F
 await page.goto("http://localhost:3000/sessions/sess-changed-2026-10-02/review", { waitUntil: "networkidle" });
 await shot(page, "mobile_review");
 await overflow(page, "review-390");
-await page.getByRole("button", { name: "Usual" }).click();
+await page.getByRole("button", { name: "Usual", exact: true }).click();
 await page.locator("select").first().selectOption("finding");
 await page.getByRole("button", { name: /How measured|Show measurements|Matches how it felt/i }).first().click().catch(() => {});
 const details = page.locator("summary");
@@ -60,8 +60,9 @@ await shot(page, "mobile_movement_only");
 
 await page.goto("http://localhost:3000/sessions/new", { waitUntil: "networkidle" });
 await overflow(page, "new-390");
-await page.locator('input[name="startedAtLocal"]').fill("2026-10-03T17:10");
-await page.locator('textarea[name="notes"]').fill("Felt late through the crease.");
+await page.getByRole("button", { name: "RPE 8" }).click();
+await page.getByRole("button", { name: "Heavy legs" }).click();
+await shot(page, "mobile_log");
 await page.getByRole("button", { name: /Create session/i }).click();
 await page.waitForURL(/\/sessions\/sess-/, { timeout: 20000 });
 await shot(page, "mobile_new_session");
