@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --surface: #f2f0eb;
+  --ink: #1a1a1a;
+  --brick: #a63a2e;
+  --line: #d9d6cc;
+}
+
+html,
+body {
+  background: var(--surface);
+  color: var(--ink);
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans), "IBM Plex Sans", system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), "Source Serif 4", Georgia, serif;
+}
+
+*:focus-visible {
+  outline: 3px solid #a63a2e;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

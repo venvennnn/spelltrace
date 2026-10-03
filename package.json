@@ -1,0 +1,23 @@
+{
+  "name": "spelltrace",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Spelltrace — athlete-first personal bowling anomaly review",
+  "workspaces": [
+    "packages/*",
+    "apps/web",
+    "apps/mobile"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=@spelltrace/web",
+    "dev:web": "npm run dev --workspace=@spelltrace/web",
+    "dev:mobile": "npm run start --workspace=@spelltrace/mobile",
+    "build": "npm run build --workspace=@spelltrace/web",
+    "test": "npm run test --workspace=@spelltrace/shared && npm run test --workspace=@spelltrace/web",
+    "lint": "npm run lint --workspace=@spelltrace/web",
+    "worker": "cd apps/worker && python -m uvicorn main:app --reload --port 8088"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

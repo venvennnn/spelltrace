@@ -1,0 +1,6 @@
+start_time_iso,end_time_iso,timezone,metric,value,unit,device,source
+2026-09-30T22:10:00+10:00,2026-10-01T06:40:00+10:00,Australia/Melbourne,sleep_duration_min,450,min,Demo Watch,imported-watch
+2026-10-01T06:40:00+10:00,,Australia/Melbourne,resting_hr_bpm,54,bpm,Demo Watch,imported-watch
+2026-10-01T06:40:00+10:00,,Australia/Melbourne,hrv_rmssd_ms,47,ms,Demo Watch,imported-watch
+2026-10-01T00:00:00+10:00,2026-10-01T23:59:00+10:00,Australia/Melbourne,steps,8200,count,Demo Watch,imported-watch
+2026-10-01T00:00:00+10:00,2026-10-01T23:59:00+10:00,Australia/Melbourne,active_minutes,46,min,Demo Watch,imported-watch
