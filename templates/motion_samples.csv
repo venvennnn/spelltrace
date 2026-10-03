@@ -1,0 +1,4 @@
+timestamp_iso,timezone,ax_m_s2,ay_m_s2,az_m_s2,gx_rad_s,gy_rad_s,gz_rad_s,device,sampling_hz
+2026-10-02T07:20:00.000+10:00,Australia/Melbourne,0.12,-0.04,9.71,0.01,-0.02,0.00,Demo IMU,50
+2026-10-02T07:20:00.020+10:00,Australia/Melbourne,0.18,-0.01,9.68,0.02,-0.01,0.01,Demo IMU,50
+2026-10-02T07:20:00.040+10:00,Australia/Melbourne,0.21,0.02,9.64,0.03,0.00,0.01,Demo IMU,50

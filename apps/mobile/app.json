@@ -1,0 +1,27 @@
+{
+  "expo": {
+    "name": "Spelltrace",
+    "slug": "spelltrace",
+    "scheme": "spelltrace",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "platforms": ["ios", "android"],
+    "ios": {
+      "bundleIdentifier": "app.spelltrace.athlete",
+      "infoPlist": {
+        "NSHealthShareUsageDescription": "Spelltrace reads sleep, heart rate, compatible HRV, steps, and workouts you approve. Signing in does not grant this access.",
+        "NSHealthUpdateUsageDescription": "Spelltrace does not write workout or medical records.",
+        "NSCameraUsageDescription": "Film a bowling spell from a stable side-on or front-on view.",
+        "NSPhotoLibraryUsageDescription": "Choose an existing bowling clip from your library."
+      }
+    },
+    "android": {
+      "package": "app.spelltrace.athlete",
+      "permissions": ["android.permission.health.READ_SLEEP", "android.permission.health.READ_HEART_RATE"]
+    },
+    "plugins": ["expo-router"],
+    "extra": {
+      "apiBase": "http://localhost:3000"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --surface: #f6f1e8;
+  --ink: #1a1714;
+}
+
+html,
+body {
+  background: var(--surface);
+  color: var(--ink);
+  min-height: 100%;
+}
+
+body {
+  font-family: "Source Sans 3", "Source Sans Pro", "Helvetica Neue", system-ui, sans-serif;
+}
+
+*:focus-visible {
+  outline: 3px solid #1f6b66;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.chart-label {
+  font-size: 12px;
+  fill: #1a1714;
+  font-family: "Source Sans 3", sans-serif;
+}
