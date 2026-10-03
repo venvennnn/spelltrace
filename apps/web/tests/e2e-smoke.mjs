@@ -27,16 +27,18 @@ page.on("pageerror", (e) => notes.push(`pageerror ${e.message}`));
 
 await page.goto("http://localhost:3000/", { waitUntil: "networkidle" });
 const h1 = await page.locator("h1").innerText();
-if (!/Spot a change in your bowling/i.test(h1)) notes.push(`FAIL landing h1: ${h1}`);
+if (!/changed in your bowling/i.test(h1)) notes.push(`FAIL landing h1: ${h1}`);
 await shot(page, "mobile_landing");
 await overflow(page, "landing-390");
-await page.getByRole("link", { name: /Try the demonstration/i }).click();
+await page.getByRole("link", { name: /Open demo/i }).click();
 await page.waitForURL("**/today");
 await shot(page, "mobile_today");
 await overflow(page, "today-390");
 const today = await page.locator("body").innerText();
-if (!/Demonstration data/i.test(today)) notes.push("FAIL missing demo banner on today");
-if (!/What changed/i.test(today)) notes.push("FAIL missing What changed");
+if (!/Demo/i.test(today)) notes.push("FAIL missing demo banner on today");
+if (!/Movement/i.test(today) || !/Sleep/i.test(today) || !/Cycle/i.test(today) || !/Environment/i.test(today)) {
+  notes.push("FAIL missing delta sections");
+}
 if (/\b(you have an injury|injury risk|diagnosed)\b/i.test(today)) notes.push("FAIL injury language on today");
 
 await page.goto("http://localhost:3000/sessions/sess-changed-2026-10-02/review", { waitUntil: "networkidle" });
@@ -49,8 +51,7 @@ const details = page.locator("summary");
 if (await details.count()) await details.first().click();
 await shot(page, "mobile_review_overlay");
 const reviewText = await page.locator("body").innerText();
-if (!/No delivery-level watch recording|not recorded/i.test(reviewText)) notes.push("FAIL missing watch-motion absent label");
-if (!/AI explanation/i.test(reviewText)) notes.push("FAIL missing AI explanation");
+if (!/Movement/i.test(reviewText) || !/Sleep/i.test(reviewText)) notes.push("FAIL missing review deltas");
 
 await page.goto("http://localhost:3000/sessions/sess-2026-09-12", { waitUntil: "networkidle" });
 const moved = await page.locator("body").innerText();

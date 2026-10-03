@@ -29,10 +29,7 @@ export default function NewSharePage() {
 
   return (
     <AppShell>
-      <h1 className="font-display text-4xl">Share a review</h1>
-      <p className="mt-2 text-sm text-muted">
-        Defaults leave check-in details, cycle/symptom notes, daily health metrics, and full raw video unselected.
-      </p>
+      <h1 className="font-display text-3xl">Share</h1>
       <ul className="mt-4 space-y-2">
         {sessions
           .filter((s) => s.deliveries.length > 0)

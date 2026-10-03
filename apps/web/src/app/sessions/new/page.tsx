@@ -51,10 +51,7 @@ export default function NewSessionPage() {
 
   return (
     <AppShell>
-      <h1 className="font-display text-4xl">New session</h1>
-      <p className="mt-2 text-sm text-muted">
-        Capture timestamp and timezone are stored explicitly. A useful personal baseline takes repeated comparable sessions.
-      </p>
+      <h1 className="font-display text-3xl">New session</h1>
       <form onSubmit={onSubmit} className="mt-6 grid gap-4 md:grid-cols-2">
         <label className="text-sm">
           Date and time

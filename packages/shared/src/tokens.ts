@@ -1,17 +1,17 @@
 /** Sensei-adapted editorial tokens shared by web and native. */
 export const tokens = {
   color: {
-    surface: "#F6F1E8",
-    surfaceRaised: "#FFFCF7",
+    surface: "#FFFFFF",
+    surfaceRaised: "#FFFFFF",
     ink: "#1A1714",
     inkMuted: "#5C564E",
     inkFaint: "#8A8378",
     teal: "#1F6B66",
-    tealSoft: "#D7E8E5",
+    tealSoft: "#E6F3F1",
     tealDeep: "#0F3F3C",
     clay: "#C46A3A",
-    claySoft: "#F3E0D4",
-    line: "#E4DCD0",
+    claySoft: "#F8EBE3",
+    line: "#E8E8E8",
     danger: "#8A2F2F",
     warning: "#8A6A1F",
     ok: "#2F6B45",

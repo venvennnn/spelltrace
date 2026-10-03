@@ -18,17 +18,11 @@ export default function TrendsPage() {
 
   return (
     <AppShell>
-      <h1 className="font-display text-4xl">History</h1>
-      <p className="mt-2 text-sm text-muted">
-        Dates use the athlete timezone. Month aggregates exclude missing or incompatible measures and disclose n. Filter by
-        view, drill, effort, and algorithm version.
-      </p>
-
+      <h1 className="font-display text-3xl">History</h1>
       <EditorialChart
-        title="Day medians — trunk lean"
+        title="Trunk lean"
         unit="°"
         points={days.map((d) => ({ x: d.key.slice(5), y: d.medianTrunk }))}
-        caption="Matched subset only. Demonstration data."
       />
 
       <section className="mt-8">

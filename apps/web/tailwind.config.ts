@@ -5,16 +5,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        surface: "#F6F1E8",
-        paper: "#FFFCF7",
+        surface: "#FFFFFF",
+        paper: "#FFFFFF",
         ink: "#1A1714",
         muted: "#5C564E",
         faint: "#8A8378",
         teal: "#1F6B66",
-        "teal-soft": "#D7E8E5",
+        "teal-soft": "#E6F3F1",
         clay: "#C46A3A",
-        "clay-soft": "#F3E0D4",
-        line: "#E4DCD0",
+        "clay-soft": "#F8EBE3",
+        line: "#E8E8E8",
         demo: "#6B4C9A",
         "demo-soft": "#EDE4F5",
       },

@@ -8,7 +8,7 @@ export default function Layout() {
         headerTitle: product.name,
         tabBarActiveTintColor: "#1F6B66",
         tabBarStyle: { minHeight: 56 },
-        headerStyle: { backgroundColor: "#F6F1E8" },
+        headerStyle: { backgroundColor: "#fff" },
         headerTitleStyle: { fontFamily: "Georgia" },
       }}
     >

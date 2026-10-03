@@ -7,15 +7,12 @@ export default function SharesPage() {
   return (
     <AppShell>
       <div className="flex items-end justify-between">
-        <h1 className="font-display text-4xl">Shares</h1>
+        <h1 className="font-display text-3xl">Shares</h1>
         <Link href="/shares/new" className="min-h-tap rounded-full bg-teal px-4 text-sm font-semibold leading-10 text-white">
           New share
         </Link>
       </div>
-      <p className="mt-2 text-sm text-muted">
-        Revoking a link blocks later visits. It cannot retract a clip someone already downloaded.
-      </p>
-      <ul className="mt-5 space-y-3">
+      <ul className="mt-4 space-y-2">
         {shares.length === 0 && <li className="text-muted">No share links yet.</li>}
         {shares.map((s) => (
           <li key={s.id} className="rounded-2xl border border-line bg-paper p-4">

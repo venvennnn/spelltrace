@@ -22,11 +22,7 @@ export default async function ComparePage({
 
   return (
     <AppShell>
-      <h1 className="font-display text-4xl">Compare</h1>
-      <p className="mt-2 text-sm text-muted">
-        Select any previously uploaded clips. One usual and one changed play at a time, aligned on phase. Desktop shows both
-        players; phones use a toggle.
-      </p>
+      <h1 className="font-display text-3xl">Compare</h1>
       {usual.d && changed.d && usual.s && changed.s && (
         <div className="mt-5">
           <ComparisonPlayer

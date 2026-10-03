@@ -10,10 +10,7 @@ export function WatchActions({ connection }: { connection: WatchConnection }) {
 
   if (!connection.live) {
     return (
-      <p className="mt-3 text-sm text-muted">
-        This control is not live. Use CSV import below
-        {connection.comingSoonReason ? ` — ${connection.comingSoonReason}` : "."}
-      </p>
+      <p className="mt-2 text-xs text-muted">{connection.status === "coming_soon" ? "Coming soon · use CSV" : "Needs a native build"}</p>
     );
   }
 

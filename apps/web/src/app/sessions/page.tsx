@@ -6,27 +6,22 @@ export default function SessionsPage() {
   const sessions = getStore().listSessions();
   return (
     <AppShell>
-      <div className="flex items-end justify-between gap-3">
-        <h1 className="font-display text-4xl">Sessions</h1>
-        <Link href="/sessions/new" className="inline-flex min-h-tap items-center rounded-full bg-teal px-4 text-sm font-semibold text-white">
+      <div className="flex items-end justify-between">
+        <h1 className="font-display text-3xl">Sessions</h1>
+        <Link href="/sessions/new" className="min-h-tap rounded-full bg-teal px-4 text-sm font-semibold leading-10 text-white">
           Add
         </Link>
       </div>
-      <ul className="mt-5 space-y-3">
+      <ul className="mt-4 space-y-2">
         {sessions.map((s) => (
           <li key={s.id}>
-            <Link href={`/sessions/${s.id}`} className="block rounded-2xl border border-line bg-paper p-4">
-              <p className="text-xs text-faint">
-                {new Date(s.startedAtUtc).toLocaleString("en-AU", { timeZone: s.timezone })} · {s.timezone}
-              </p>
-              <p className="font-display text-2xl capitalize">
-                {s.view}-on {s.drill} · {s.effort}
+            <Link href={`/sessions/${s.id}`} className="block rounded-2xl border border-line px-4 py-3">
+              <p className="font-semibold capitalize">
+                {new Date(s.startedAtUtc).toLocaleDateString("en-AU")} · {s.view} {s.drill}
               </p>
               <p className="text-sm text-muted">
-                {s.deliveries.length} deliveries · {s.video?.deleted ? "original video deleted" : s.video ? "video kept" : "no video"} · motion{" "}
-                {s.motionStatus === "not_recorded" ? "not recorded" : s.motionStatus}
+                {s.deliveries.length} balls{s.video?.deleted ? " · video deleted" : ""}
               </p>
-              <p className="mt-1 text-xs text-demo">synthetic-demo</p>
             </Link>
           </li>
         ))}

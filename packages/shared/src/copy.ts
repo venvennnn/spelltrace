@@ -1,30 +1,21 @@
 export const product = {
   name: "Spelltrace",
-  tagline: "Spot a change in your bowling, understand why, decide what to share",
-  coreQuestion:
-    "What changed for me today, compared with my own usual bowling under similar conditions?",
-  audience: "Adult women pace bowlers — club, university, pathway, or national.",
+  tagline: "See what changed in your bowling",
+  coreQuestion: "What changed vs your usual?",
+  audience: "Adult women pace bowlers.",
 } as const;
 
 export const limits = {
-  noDiagnosis:
-    "Spelltrace detects deviations from your own earlier bowling. It does not diagnose injury, assign a medical risk percentage, infer cycle phase, or prescribe a spell cap.",
-  noMaleNorms:
-    "Your baseline is built only from your own comparable sessions. We never use male-derived “normal” ranges.",
-  noWatchMotionFromDaily:
-    "Daily heart rate, sleep, and steps are not bowling-motion data. Delivery-level watch movement needs a compatible recording app or an explicit motion file.",
-  noBallClaims:
-    "This version does not claim ball speed, landing accuracy, or true 3D spinal loading from a phone camera.",
-  adultOnly: "Pilot access is adult-only.",
-  demoBanner:
-    "Demonstration data — synthetic sessions and rights-cleared placeholders. Not athlete validation.",
-  geminiRole:
-    "AI explanation is language only. Numbers come from measured features. If narration fails checks, you still see the measurements.",
-  shareRevoke:
-    "Revoking a link blocks later visits. It cannot retract a clip someone already downloaded.",
-  videoDeleted: "Original video deleted. Skeletal replay uses stored landmarks only — pixels cannot be reconstructed.",
-  movementUnavailable:
-    "Movement-only retention is unavailable because analysis did not finish. Footage was not deleted automatically.",
+  noDiagnosis: "Finds change vs your usual. Not a diagnosis.",
+  noMaleNorms: "Baseline is yours only.",
+  noWatchMotionFromDaily: "Sleep and HR are context, not bowling motion.",
+  noBallClaims: "No ball-speed or 3D loading claims.",
+  adultOnly: "Adults only.",
+  demoBanner: "Demo",
+  geminiRole: "AI is wording only. Numbers stay measured.",
+  shareRevoke: "Revoke blocks later visits, not old downloads.",
+  videoDeleted: "Video deleted · skeleton only",
+  movementUnavailable: "No movement kept — analysis did not finish.",
 } as const;
 
 export const nav = {
@@ -115,10 +106,9 @@ export const featureCopy: Record<
 };
 
 export const emptyStates = {
-  noSessions: "No sessions yet. Film a spell from a stable side-on or front-on view to begin.",
-  baselineBuilding:
-    "Baseline building. A confident change label needs at least 3 earlier matched sessions and 30 quality-passed deliveries. You can still compare clips.",
-  missingWatch: "No watch file for this day. Pose comparison still works.",
-  cannotCompare: "This clip cannot be compared — quality or framing was not adequate.",
-  noFindings: "Nothing stood out against your usual matched bowling. Measurements are still available.",
+  noSessions: "No sessions yet.",
+  baselineBuilding: "Still building your baseline. You can compare clips.",
+  missingWatch: "No watch file. Pose still works.",
+  cannotCompare: "Cannot compare — quality too low.",
+  noFindings: "No stand-out change.",
 } as const;

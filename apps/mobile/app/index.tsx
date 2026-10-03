@@ -1,35 +1,41 @@
 import { ScrollView, Text, View } from "react-native";
-import { DEMO_CHANGED_SESSION_ID, demoTimeline, limits, reviewForSession, watchLabels } from "@spelltrace/shared";
+import {
+  DEMO_CHANGED_SESSION_ID,
+  cycleDelta,
+  environmentDeltas,
+  movementDeltas,
+  recoveryDeltas,
+  reviewForSession,
+  demoSessions,
+} from "@spelltrace/shared";
+
+function Rows({ title, rows }: { title: string; rows: { id: string; label: string; today: string; usual: string; delta: string }[] }) {
+  return (
+    <View style={{ marginTop: 16, borderWidth: 1, borderColor: "#E8E8E8", borderRadius: 16, padding: 12, backgroundColor: "#fff" }}>
+      <Text style={{ fontSize: 18, fontFamily: "Georgia" }}>{title}</Text>
+      {rows.map((r) => (
+        <View key={r.id} style={{ flexDirection: "row", justifyContent: "space-between", marginTop: 8 }}>
+          <Text style={{ flex: 1 }}>{r.label}</Text>
+          <Text>{r.today}</Text>
+          <Text style={{ color: "#8A8378", marginLeft: 8 }}>vs {r.usual}</Text>
+          <Text style={{ fontWeight: "700", marginLeft: 8 }}>{r.delta}</Text>
+        </View>
+      ))}
+    </View>
+  );
+}
 
 export default function Today() {
+  const session = demoSessions.find((s) => s.id === DEMO_CHANGED_SESSION_ID)!;
   const review = reviewForSession(DEMO_CHANGED_SESSION_ID);
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: "#F6F1E8" }} contentContainerStyle={{ padding: 16, paddingBottom: 48 }}>
-      <Text style={{ color: "#6B4C9A", fontWeight: "700", marginBottom: 8 }}>{limits.demoBanner}</Text>
-      <Text style={{ fontSize: 32, fontFamily: "Georgia" }}>Today</Text>
-      <Text style={{ color: "#5C564E", marginTop: 8 }}>{limits.noDiagnosis}</Text>
-      <Text style={{ fontSize: 22, fontFamily: "Georgia", marginTop: 20 }}>My day</Text>
-      {demoTimeline.blocks.map((b) => (
-        <View key={b.id} style={{ backgroundColor: "#FFFCF7", borderRadius: 16, padding: 12, marginTop: 8 }}>
-          <Text style={{ color: "#8A8378", fontSize: 12 }}>
-            {b.label} · {b.source}
-          </Text>
-          <Text>{b.missing ? "Missing — not shown as zero" : b.value}</Text>
-        </View>
-      ))}
-      <Text style={{ fontSize: 22, fontFamily: "Georgia", marginTop: 20 }}>What changed</Text>
-      <Text style={{ color: "#5C564E", marginTop: 6 }}>
-        {review.findings.length} pose findings · {watchLabels.notRecorded}
-      </Text>
-      {review.findings.map((f) => (
-        <View key={f.evidenceId} style={{ backgroundColor: "#FFFCF7", borderRadius: 16, padding: 12, marginTop: 8 }}>
-          <Text style={{ fontWeight: "700" }}>{f.feature}</Text>
-          <Text>{f.text}</Text>
-          <Text style={{ marginTop: 4 }}>
-            {f.current} vs median {f.personalMedian} · {f.source}
-          </Text>
-        </View>
-      ))}
+    <ScrollView style={{ flex: 1, backgroundColor: "#fff" }} contentContainerStyle={{ padding: 16, paddingBottom: 48 }}>
+      <Text style={{ color: "#6B4C9A", fontWeight: "700" }}>Demo</Text>
+      <Text style={{ fontSize: 28, fontFamily: "Georgia" }}>Today</Text>
+      <Rows title="Movement" rows={movementDeltas(review.findings)} />
+      <Rows title="Sleep & recovery" rows={recoveryDeltas(session, demoSessions)} />
+      <Rows title="Cycle" rows={[cycleDelta(session, demoSessions)]} />
+      <Rows title="Environment" rows={environmentDeltas(session, demoSessions)} />
     </ScrollView>
   );
 }
