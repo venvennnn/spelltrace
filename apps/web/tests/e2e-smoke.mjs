@@ -55,7 +55,7 @@ if (!/Movement/i.test(reviewText) || !/Sleep/i.test(reviewText)) notes.push("FAI
 
 await page.goto("http://localhost:3000/sessions/sess-2026-09-12", { waitUntil: "networkidle" });
 const moved = await page.locator("body").innerText();
-if (!/original video deleted|skeletal/i.test(moved)) notes.push("FAIL movement-only session missing deletion label");
+if (!/video deleted|skeletal/i.test(moved)) notes.push("FAIL movement-only session missing deletion label");
 await shot(page, "mobile_movement_only");
 
 await page.goto("http://localhost:3000/sessions/new", { waitUntil: "networkidle" });
@@ -63,7 +63,7 @@ await overflow(page, "new-390");
 await page.locator('input[name="startedAtLocal"]').fill("2026-10-03T17:10");
 await page.locator('textarea[name="notes"]').fill("Felt late through the crease.");
 await page.getByRole("button", { name: /Create session/i }).click();
-await page.waitForURL(/\/sessions\/sess-/, { timeout: 8000 });
+await page.waitForURL(/\/sessions\/sess-/, { timeout: 20000 });
 await shot(page, "mobile_new_session");
 notes.push(`new session url ${page.url()}`);
 

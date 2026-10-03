@@ -209,33 +209,45 @@ function drawFootage(
   };
   const p = (name: LandmarkName) => mapLandmarkToPlayer(frame.points[name], layout);
 
-  // filmed athlete fill — the “video” body the skeleton sits on
   const ls = p("left_shoulder");
   const rs = p("right_shoulder");
   const lh = p("left_hip");
   const rh = p("right_hip");
   const nose = p("nose");
-  ctx.fillStyle = "#1f3d6e";
+  const midX = (ls.x + rs.x + lh.x + rh.x) / 4;
+  const midY = (ls.y + rs.y + lh.y + rh.y) / 4;
+
+  ctx.fillStyle = "#1c3f7a";
   ctx.beginPath();
-  ctx.moveTo(ls.x, ls.y);
-  ctx.lineTo(rs.x, rs.y);
-  ctx.lineTo(rh.x, rh.y);
-  ctx.lineTo(lh.x, lh.y);
+  ctx.moveTo((ls.x + rs.x) / 2, (ls.y + rs.y) / 2 - 6);
+  ctx.lineTo(rs.x + 6, rs.y);
+  ctx.lineTo((rh.x + lh.x) / 2 + 10, (rh.y + lh.y) / 2);
+  ctx.lineTo(lh.x - 6, lh.y);
   ctx.closePath();
   ctx.fill();
 
-  drawLimb(ctx, p("left_shoulder"), p("left_elbow"), p("left_wrist"), "#2a4f86", 10);
-  drawLimb(ctx, p("right_shoulder"), p("right_elbow"), p("right_wrist"), "#2a4f86", 10);
-  drawLimb(ctx, p("left_hip"), p("left_knee"), p("left_ankle"), "#163058", 11);
-  drawLimb(ctx, p("right_hip"), p("right_knee"), p("right_ankle"), "#163058", 11);
+  drawLimb(ctx, p("left_shoulder"), p("left_elbow"), p("left_wrist"), "#c45c2a", 9);
+  drawLimb(ctx, p("right_shoulder"), p("right_elbow"), p("right_wrist"), "#f2d2a8", 8);
+  drawLimb(ctx, p("left_hip"), p("left_knee"), p("left_ankle"), "#1a1a1a", 10);
+  drawLimb(ctx, p("right_hip"), p("right_knee"), p("right_ankle"), "#1a1a1a", 10);
+  ctx.fillStyle = "#f2d2a8";
+  ctx.beginPath();
+  ctx.arc(p("left_ankle").x, p("left_ankle").y + 6, 7, 0, Math.PI * 2);
+  ctx.arc(p("right_ankle").x, p("right_ankle").y + 6, 7, 0, Math.PI * 2);
+  ctx.fill();
 
   ctx.fillStyle = "#e8c4a0";
   ctx.beginPath();
-  ctx.arc(nose.x, nose.y, 11, 0, Math.PI * 2);
+  ctx.arc(nose.x, nose.y, 10, 0, Math.PI * 2);
   ctx.fill();
-  ctx.fillStyle = "#1a1a1a";
+  ctx.fillStyle = "#111";
   ctx.beginPath();
-  ctx.ellipse(nose.x, nose.y - 10, 12, 6, 0, Math.PI, 0, true);
+  ctx.ellipse(nose.x - 2, nose.y - 8, 11, 5, -0.4, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = "rgba(255,255,255,0.12)";
+  ctx.beginPath();
+  ctx.arc(midX, midY, 4, 0, Math.PI * 2);
   ctx.fill();
 }
 

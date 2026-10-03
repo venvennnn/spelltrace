@@ -26,6 +26,12 @@ export default function TodayPage() {
         vs your usual {review.baseline.match}
         {review.baseline.status === "building" ? " · baseline still building" : ""}
       </p>
+      <Link
+        href={`/sessions/${DEMO_CHANGED_SESSION_ID}/review`}
+        className="mt-4 inline-flex min-h-tap w-full items-center justify-center rounded-full bg-teal font-semibold text-white"
+      >
+        Compare clips
+      </Link>
 
       <div className="mt-5 space-y-3">
         <DeltaList title="Movement" rows={movementDeltas(review.findings)} />
@@ -33,13 +39,6 @@ export default function TodayPage() {
         <DeltaList title="Cycle" rows={[cycleDelta(session, sessions)]} hint="Private · not a verdict" />
         <DeltaList title="Environment" rows={environmentDeltas(session, sessions)} />
       </div>
-
-      <Link
-        href={`/sessions/${DEMO_CHANGED_SESSION_ID}/review`}
-        className="mt-6 inline-flex min-h-tap w-full items-center justify-center rounded-full bg-teal font-semibold text-white"
-      >
-        Compare clips
-      </Link>
     </AppShell>
   );
 }

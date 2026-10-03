@@ -16,7 +16,7 @@ const items = [
 export function AppShell({ children }: { children: React.ReactNode }) {
   const path = usePathname();
   return (
-    <div className="mx-auto min-h-dvh w-full max-w-page bg-surface pb-24 md:pb-8">
+    <div className="mx-auto min-h-dvh w-full max-w-page bg-white pb-28 md:pb-8">
       <header className="sticky top-0 z-20 border-b border-line bg-surface/95 px-4 py-3 backdrop-blur">
         <div className="flex items-center justify-between gap-3">
           <Link href="/today" className="font-display text-xl text-ink">

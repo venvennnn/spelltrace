@@ -10,7 +10,6 @@ import { AppShell } from "@/components/AppShell";
 import { ComparisonPlayer } from "@/components/ComparisonPlayer";
 import { DeltaList } from "@/components/DeltaList";
 import { getStore } from "@/lib/store";
-import { ExplainPanel } from "./ExplainPanel";
 
 export default async function ReviewPage({
   params,
@@ -78,8 +77,6 @@ export default async function ReviewPage({
         <DeltaList title="Cycle" rows={[cycleDelta(session, sessions)]} hint="Private · phase not inferred" />
         <DeltaList title="Environment" rows={environmentDeltas(session, sessions)} />
       </div>
-
-      <ExplainPanel sessionId={id} />
 
       {finding && (
         <details className="mt-4 text-sm">
